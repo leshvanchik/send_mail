@@ -7,35 +7,35 @@ Dim k As Long
 Dim i As Date
 i = Date
 Dim a, b, z, y As String
-z = ThisWorkbook.Worksheets("Титул").Range("N9")
-y = ThisWorkbook.Worksheets("Титул").Range("N12")
-a = z & "02_3 Границы 11-00 " & i & ".xlsx"
-b = z & "02_4 Мониторинг размещения 11-00 " & i & ".xlsx"
+z = ThisWorkbook.Worksheets("РўРёС‚СѓР»").Range("N9")
+y = ThisWorkbook.Worksheets("РўРёС‚СѓР»").Range("N12")
+a = z & "02_3 Р“СЂР°РЅРёС†С‹ 11-00 " & i & ".xlsx"
+b = z & "02_4 РњРѕРЅРёС‚РѕСЂРёРЅРі СЂР°Р·РјРµС‰РµРЅРёСЏ 11-00 " & i & ".xlsx"
 
-ThisWorkbook.Worksheets("Титул").Cells(18, 10) = "Размещено в обсерваторе «Балтиец»            (занято мест на " & i & ")"
+ThisWorkbook.Worksheets("РўРёС‚СѓР»").Cells(18, 10) = "Р Р°Р·РјРµС‰РµРЅРѕ РІ РѕР±СЃРµСЂРІР°С‚РѕСЂРµ В«Р‘Р°Р»С‚РёРµС†В»            (Р·Р°РЅСЏС‚Рѕ РјРµСЃС‚ РЅР° " & i & ")"
 
     myBook = ThisWorkbook.Name
     loadBook = Dir(a)
     GetObject (a)
-    k = Workbooks(loadBook).Worksheets("Для диаграммы").Cells(Rows.Count, 5).End(xlUp).Row
-    Workbooks(myBook).Worksheets("Границы").Range("B5:Q6") = Workbooks(loadBook).Worksheets(1).Range("B8:Q9").Value
-    Workbooks(myBook).Worksheets("Границы").Range("B38:D44") = Workbooks(loadBook).Worksheets("Для диаграммы").Range("E" & k - 6 & ":G" & k + 1).Value
-    Workbooks(myBook).Worksheets("Границы").Range("F38:G44") = Workbooks(loadBook).Worksheets("Для диаграммы").Range("H" & k - 6 & ":I" & k + 1).Value
+    k = Workbooks(loadBook).Worksheets("Р”Р»СЏ РґРёР°РіСЂР°РјРјС‹").Cells(Rows.Count, 5).End(xlUp).Row
+    Workbooks(myBook).Worksheets("Р“СЂР°РЅРёС†С‹").Range("B5:Q6") = Workbooks(loadBook).Worksheets(1).Range("B8:Q9").Value
+    Workbooks(myBook).Worksheets("Р“СЂР°РЅРёС†С‹").Range("B38:D44") = Workbooks(loadBook).Worksheets("Р”Р»СЏ РґРёР°РіСЂР°РјРјС‹").Range("E" & k - 6 & ":G" & k + 1).Value
+    Workbooks(myBook).Worksheets("Р“СЂР°РЅРёС†С‹").Range("F38:G44") = Workbooks(loadBook).Worksheets("Р”Р»СЏ РґРёР°РіСЂР°РјРјС‹").Range("H" & k - 6 & ":I" & k + 1).Value
     Workbooks(loadBook).Close (False)
 
     myBook = ThisWorkbook.Name
     loadBook = Dir(b)
     GetObject (b)
-    k = Workbooks(loadBook).Worksheets("данные").Cells(Rows.Count, 9).End(xlUp).Row
-    Workbooks(myBook).Worksheets("Титул").Range("J19") = Workbooks(loadBook).Worksheets("данные").Range("I" & k).Value
-    Workbooks(myBook).Worksheets("Титул").Range("K19") = Workbooks(loadBook).Worksheets(1).Range("A5").Value
+    k = Workbooks(loadBook).Worksheets("РґР°РЅРЅС‹Рµ").Cells(Rows.Count, 9).End(xlUp).Row
+    Workbooks(myBook).Worksheets("РўРёС‚СѓР»").Range("J19") = Workbooks(loadBook).Worksheets("РґР°РЅРЅС‹Рµ").Range("I" & k).Value
+    Workbooks(myBook).Worksheets("РўРёС‚СѓР»").Range("K19") = Workbooks(loadBook).Worksheets(1).Range("A5").Value
     Application.DisplayAlerts = 0
-    Workbooks(myBook).Worksheets("Балтиец").Delete
+    Workbooks(myBook).Worksheets("Р‘Р°Р»С‚РёРµС†").Delete
     Application.DisplayAlerts = 1
-    Workbooks(loadBook).Worksheets("Балтиец").Copy After:=Workbooks(myBook).Sheets(2)
+    Workbooks(loadBook).Worksheets("Р‘Р°Р»С‚РёРµС†").Copy After:=Workbooks(myBook).Sheets(2)
     Workbooks(loadBook).Close (False)
     
-    With Workbooks(myBook).Worksheets("Титул")
+    With Workbooks(myBook).Worksheets("РўРёС‚СѓР»")
     .Range("L19").Formula = "=TRIM(LEFTB(SUBSTITUTE(R19C[-1],"","",REPT("" "",999)),999))"
     .Range("L19") = .Range("L19").Value
     .Range("K19") = Extract_Number_from_Text(.Range("L19"), 0)
@@ -43,8 +43,9 @@ ThisWorkbook.Worksheets("Титул").Cells(18, 10) = "Размещено в обсерваторе «Балти
     .Select
     End With
 
+'    РЎРѕС…СЂР°РЅРµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° РІ РЅРѕРІРѕР№ РєРЅРёРіРµ    
 '    Workbooks.Add
-'    ActiveWorkbook.Worksheets(1).Range("A1:P4") = Workbooks("СверхГраница").Worksheets("Загрузка1").Range("A1:P4").Value
+'    ActiveWorkbook.Worksheets(1).Range("A1:P4") = Workbooks("РЎРІРµСЂС…Р“СЂР°РЅРёС†Р°").Worksheets("Р—Р°РіСЂСѓР·РєР°1").Range("A1:P4").Value
 '    ActiveWorkbook.SaveAs Filename:=y & " " & i & ".xlsx"
 '    ActiveWorkbook.Close (True)
 
@@ -55,7 +56,7 @@ ThisWorkbook.Worksheets("Титул").Cells(18, 10) = "Размещено в обсерваторе «Балти
      
     Application.ScreenUpdating = False
     On Error Resume Next
-    Set OutApp = GetObject(, "Outlook.Application")   'запускаем Outlook в скрытом режиме
+    Set OutApp = GetObject(, "Outlook.Application")   'Р·Р°РїСѓСЃРєР°РµРј Outlook РІ СЃРєСЂС‹С‚РѕРј СЂРµР¶РёРјРµ
         If Err = 0 Then
             IsOultOpen = True
             Else
@@ -63,15 +64,15 @@ ThisWorkbook.Worksheets("Титул").Cells(18, 10) = "Размещено в обсерваторе «Балти
             Set OutApp = CreateObject("Outlook.Application")
     End If
     OutApp.Session.Logon ' "a.tihonov@iac.spb.ru", "infocenter@iac.spb.ru", False, True
-    Set OutMail = OutApp.CreateItem(0)   'создаем новое сообщение
+    Set OutMail = OutApp.CreateItem(0)   'СЃРѕР·РґР°РµРј РЅРѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ
     If Err.Number <> 0 Then Set OutApp = Nothing: Set OutMail = Nothing: Exit Sub
-    'заполняем поля сообщения
+    'Р·Р°РїРѕР»РЅСЏРµРј РїРѕР»СЏ СЃРѕРѕР±С‰РµРЅРёСЏ
     With OutMail
         .To = ThisWorkbook.Worksheets(1).Range("N2").Value
         .Subject = ThisWorkbook.Worksheets(1).Range("N3").Value
         .Body = ThisWorkbook.Worksheets(1).Range("N4").Value
         .Attachments.Add ThisWorkbook.Worksheets(1).Range("N5").Value
-        'команду Send можно заменить на Display, чтобы посмотреть сообщение перед отправкой
+        'РєРѕРјР°РЅРґСѓ Send РјРѕР¶РЅРѕ Р·Р°РјРµРЅРёС‚СЊ РЅР° Display, С‡С‚РѕР±С‹ РїРѕСЃРјРѕС‚СЂРµС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРµСЂРµРґ РѕС‚РїСЂР°РІРєРѕР№
         .Display
     End With
  
@@ -82,13 +83,13 @@ ThisWorkbook.Worksheets("Титул").Cells(18, 10) = "Размещено в обсерваторе «Балти
 End Sub
      
 Function Extract_Number_from_Text(sWord As String, Optional Metod As Integer)
-'sWord = ссылка на ячейку или непосредственно текст
-'Metod = 0 – числа
-'Metod = 1 – текст
+'sWord = СЃСЃС‹Р»РєР° РЅР° СЏС‡РµР№РєСѓ РёР»Рё РЅРµРїРѕСЃСЂРµРґСЃС‚РІРµРЅРЅРѕ С‚РµРєСЃС‚
+'Metod = 0 вЂ“ С‡РёСЃР»Р°
+'Metod = 1 вЂ“ С‚РµРєСЃС‚
     Dim sSymbol As String, sInsertWord As String
     Dim i As Integer
  
-    If sWord = "" Then Extract_Number_from_Text = "Нет данных!": Exit Function
+    If sWord = "" Then Extract_Number_from_Text = "ГЌГҐГІ Г¤Г Г­Г­Г»Гµ!": Exit Function
     sInsertWord = ""
     sSymbol = ""
     For i = 1 To Len(sWord)
